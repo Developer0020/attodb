@@ -15,5 +15,6 @@ public class Main {
         AuthController authController = new AuthController();
         authController.start();
 
+        System.out.println("mazgi");
     }
 }
