@@ -13,8 +13,14 @@ import java.util.Scanner;
 
 public class AdminController {
     //    private CardService cardService = new CardService();
-    private ProfileService profileService ;
+    private ProfileService profileService;
     private TerminalService terminalService;
+
+    private CardService cardService;
+
+    public void setCardService(CardService cardService) {
+        this.cardService = cardService;
+    }
 
     public void setProfileService(ProfileService profileService) {
         this.profileService = profileService;
@@ -136,7 +142,7 @@ public class AdminController {
         System.out.print("Enter card expired date (yyyy.MM.dd): ");
         String expiredDate = scanner.nextLine();
 
-        ComponentContainer.cardService.adminCreateCard(cardNumber, expiredDate);
+        cardService.adminCreateCard(cardNumber, expiredDate);
     }
 
     private void cardList() {
