@@ -13,8 +13,16 @@ import java.util.Scanner;
 
 public class AdminController {
     //    private CardService cardService = new CardService();
-    private ProfileService profileService = new ProfileService();
-    private TerminalService terminalService = new TerminalService();
+    private ProfileService profileService ;
+    private TerminalService terminalService;
+
+    public void setProfileService(ProfileService profileService) {
+        this.profileService = profileService;
+    }
+
+    public void setTerminalService(TerminalService terminalService) {
+        this.terminalService = terminalService;
+    }
 
     public void start() {
         boolean b = true;
