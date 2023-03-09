@@ -95,7 +95,7 @@ public class ProfileRepository {
             Statement statement = connection.createStatement();
             String sql = String.format("Select  id from profile where phone= '%s';", phone);
             ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 return true;
             }
 

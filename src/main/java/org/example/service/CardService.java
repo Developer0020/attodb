@@ -13,13 +13,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class CardService {
-    private TransactionService transactionService = ComponentContainer.transactionService;
-    private TerminalService terminalService = ComponentContainer.terminalService;
-
-    private ProfileService profileService = ComponentContainer.profileService;
+    private TransactionService transactionService ;
+    private TerminalService terminalService ;
+    private ProfileService profileService ;
+    private  CardRepository cardRepository ;
 
     public void addCardToProfile(String phone, String cardNum) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         Card exists = cardRepository.getCardByNumber(cardNum);
         if (exists == null) {
             System.out.println("Card not found");
@@ -30,7 +29,6 @@ public class CardService {
     }
 
     public void profileCardList(String phone) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         List<Card> cardList = cardRepository.getCardByProfilePhone(phone);
         for (Card card : cardList) {
             System.out.println(card);
@@ -38,7 +36,6 @@ public class CardService {
     }
 
     public void userChangeCardStatus(String phone, String cardNumber) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         Card card = cardRepository.getCardByNumber(cardNumber);
         if (card == null) {
             System.out.println("Card not found");
@@ -60,7 +57,6 @@ public class CardService {
     }
 
     public void userDeleteCard(String phone, String cardNumber) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         Card card = cardRepository.getCardByNumber(cardNumber);
         if (card == null) {
             System.out.println("Card not found");
@@ -79,7 +75,6 @@ public class CardService {
     }
 
     public void adminCreateCard(String cardNumber, String expiredDate) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         Card exist = cardRepository.getCardByNumber(cardNumber);
         if (exist != null) {
             System.out.println("Card Number is exist");
@@ -107,7 +102,6 @@ public class CardService {
     }
 
     public void cardList() {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         List<Card> cardList = cardRepository.getList();
         for (Card card : cardList) {
             System.out.println(card);
@@ -115,7 +109,6 @@ public class CardService {
     }
 
     public void adminDeleteCard(String cardNumber) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         Card card = cardRepository.getCardByNumber(cardNumber);
         if (card == null) {
             System.out.println("Card not found");
@@ -128,7 +121,6 @@ public class CardService {
     }
 
     public void adminChangeStatus(String cardNumber) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         Card card = cardRepository.getCardByNumber(cardNumber);
         if (card == null) {
             System.out.println("Card not found");
@@ -144,7 +136,6 @@ public class CardService {
     }
 
     public void adminUpdateCard(String cardNumber, String expiredDate) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         Card exist = cardRepository.getCardByNumber(cardNumber);
         if (exist == null) {
             System.out.println("Card not found");
@@ -165,7 +156,6 @@ public class CardService {
     }
 
     public void userRefillCard(String phone, String cardNumber, Double amount) {
-        CardRepository cardRepository = ComponentContainer.cardRepository;
         Card card = cardRepository.getCardByNumber(cardNumber);
         if (card == null) {
             System.out.println("Card not found");
@@ -181,4 +171,19 @@ public class CardService {
         transactionService.createTransaction(card.getId(), null, amount, TransactionType.ReFill);
     }
 
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
+
+    public void setTerminalService(TerminalService terminalService) {
+        this.terminalService = terminalService;
+    }
+
+    public void setProfileService(ProfileService profileService) {
+        this.profileService = profileService;
+    }
+
+    public void setCardRepository(CardRepository cardRepository) {
+        this.cardRepository = cardRepository;
+    }
 }

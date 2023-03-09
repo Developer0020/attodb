@@ -8,7 +8,11 @@ import org.example.util.ScannerUtil;
 import java.util.Scanner;
 
 public class ProfileController {
-    private CardService cardService = new CardService();
+    private CardService cardService ;
+
+    public void setCardService(CardService cardService) {
+        this.cardService = cardService;
+    }
 
     public void start() {
         boolean b = true;

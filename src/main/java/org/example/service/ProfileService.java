@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ProfileService {
 
-    private ProfileRepository profileRepository = new ProfileRepository();
-    private CardService cardService = ComponentContainer.cardService;
+    private ProfileRepository profileRepository;
+
 
     public void profileList() {
         List<Profile> profileList = profileRepository.getProfileList();
@@ -32,6 +32,14 @@ public class ProfileService {
         } else {
             profileRepository.changeProfileStatus(phone, GeneralStatus.ACTIVE);
         }
+    }
+
+    public ProfileRepository getProfileRepository() {
+        return profileRepository;
+    }
+
+    public void setProfileRepository(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
     }
 
 }
